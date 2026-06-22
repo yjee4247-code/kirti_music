@@ -34,7 +34,7 @@ LOGGER_ID = int(getenv("LOGGER_ID", -1003670001038))
 
 # Vars For API End Pont.
 YTPROXY_URL = getenv("YTPROXY_URL", 'https://tgapi.xbitcode.com') ## xBit Music Endpoint.
-YT_API_KEY = getenv("YT_API_KEY" , 'xbit_JwovKyueoOSdTczoI53PUcT94YtlZllm') ## Your API key like: xbit_10000000xx0233 Get from  https://t.me/tgmusic_apibot
+YT_API_KEY = getenv("YT_API_KEY" , 'xbit_-j8PDMHgRGM7B8XfaiNQQora24EWFy0Q') ## Your API key like: xbit_10000000xx0233 Get from  https://t.me/tgmusic_apibot
 
 
 # ======================================================
@@ -54,13 +54,13 @@ HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
 # ======================================================
-UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/Badnam465/Shivimusic-")
+UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/yjee4247-code/kirti_music")
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv("GIT_TOKEN", "YOUR_GIT_TOKEN")
 
 # ======================================================
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/Kirti_update")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/kirti_supprot_group")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/annu_updates")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/annu_support")
 
 # ======================================================
 SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID", "1c21247d714244ddbb09925dac565aed")
