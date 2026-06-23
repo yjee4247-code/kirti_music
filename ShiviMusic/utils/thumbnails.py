@@ -20,7 +20,7 @@ def clean_username(name: str) -> str:
     import re
 
     if not name:
-        return "AxiomUser"
+        return "Kirtimusic"
 
     # normalize
     name = unicodedata.normalize("NFKC", name)
@@ -37,7 +37,7 @@ def clean_username(name: str) -> str:
     cleaned = re.sub(r'\s+', ' ', cleaned).strip()
 
     if len(cleaned) < 3:
-        return "AxiomUser"
+        return "Kirtimusic"
 
     return cleaned
     
@@ -259,7 +259,7 @@ def _truncate(draw, text, font, max_w):
     return text + "…"
 
 
-async def get_thumb(videoid: str, user_name: str = "AxiomUser") -> str:
+async def get_thumb(videoid: str, user_name: str = "Kirtimusic") -> str:
     output = f"cache/{videoid}.png"
     cache  = f"cache/thumb{videoid}.jpg"
     os.makedirs("cache", exist_ok=True)
