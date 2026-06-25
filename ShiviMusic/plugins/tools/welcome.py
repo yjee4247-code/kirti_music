@@ -165,63 +165,50 @@ async def greet_new_member(_, member: ChatMemberUpdated):
         except:
             pic = "ShiviMusic/assets/upic.png"
 
-        old = temp.MELCOW.get(f"welcome-{chat_id}")
-        if old:
+        if temp.MELCOW.get(f"welcome-{chat_id}") is not None:
             try:
-                await old.delete()
-            except:
-                pass
+                await temp.MELCOW[f"welcome-{chat_id}"].delete()
+            except Exception as e:
+                LOGGER.error(e)
 
-        welcomeimg = welcomepic(
-            pic,
-            user.first_name,
-            member.chat.title,
-            user.id,
-            user.username
-        )
+        try:
+            welcomeimg = welcomepic(pic, user.first_name, member.chat.title, user.id, user.username)
+            button_text = "๏ ᴠɪᴇᴡ ɴᴇᴡ ᴍᴇᴍʙᴇʀ ๏"
+            add_button_text = "✙ ᴋɪᴅɴᴀᴘ ᴍᴇ ✙"
+            deep_link = f"tg://openmessage?user_id={user.id}"
+            add_link = f"https://t.me/{app.username}?startgroup=true"
 
-        msg = await app.send_photo(
-            chat_id,
-            photo=welcomeimg,
-            caption=f"""
-**⏤͟͟͞͞★ ʜᴇʟʟᴏ ᴅᴇᴀʀ ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ : {member.chat.title}**
+            msg = await app.send_photo(
+                chat_id,
+                photo=welcomeimg,
+                caption=f"""
+**⎊─────☵ ᴡᴇʟᴄᴏᴍᴇ ☵─────⎊**
 
-<u>**❖ ᴜsᴇʀ sʜᴏʀᴛ ɪɴғᴏ**</u>
+**▬▭▬▭▬▭▬▭▬▭▬▭▬▭▬**
 
-**➻ ɴᴀᴍᴇ »** {user.mention}
-**➻ ᴄʜᴀᴛ_ɪᴅ »** `{user.id}`
-**➻ ᴜ_ɴᴀᴍᴇ »** @{user.username}
+**☉ ɴᴀᴍᴇ ⧽** {user.mention}
+**☉ ɪᴅ ⧽** `{user.id}`
+**☉ ᴜ_ɴᴀᴍᴇ ⧽** @{user.username if user.username else 'None'}
+**☉ ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀs ⧽** {count}
 
-**➻ ᴛʜᴀɴᴋs ғᴏʀ ᴊᴏɪɴɪɴɢ ᴜs ⚡️~!
-❅─────✧❅✦❅✧─────❅**
+**▬▭▬▭▬▭▬▭▬▭▬▭▬▭▬**
+
+**⎉──────▢✭ 侖 ✭▢──────⎉**
 """,
-            reply_markup=InlineKeyboardMarkup([
-                [
-                    InlineKeyboardButton(
-                        "ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ",
-                        url=f"https://t.me/{app.username}?startgroup=true"
-                    )
-                ]
-            ])
-        )
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton(button_text, url=deep_link)],
+                    [InlineKeyboardButton(text=add_button_text, url=add_link)],
+                ])
+            )
 
-        async def delete_welcome():
-            await asyncio.sleep(10)
+            temp.MELCOW[f"welcome-{chat_id}"] = msg
+
+            # Auto-delete welcome message in 5 minutes (300 seconds)
+            await asyncio.sleep(300)
             try:
                 await msg.delete()
-                if f"welcome-{chat_id}" in temp.MELCOW:
-                    del temp.MELCOW[f"welcome-{chat_id}"]
             except:
                 pass
 
-        asyncio.create_task(delete_welcome())
-        temp.MELCOW[f"welcome-{chat_id}"] = msg  
-
-
-# ======================================================
-# ©️ 2025-26 All Rights Reserved by Purvi Bots (Im-Notcoder) 😎
-
-# 🧑‍💻 Developer : t.me/TheSigmaCoder
-# 🔗 Source link : GitHub.com/Im-Notcoder/Sonali-MusicV2
-# 📢 Telegram channel : t.me/Purvi_Bots
-# =======================================================
+        except Exception as e:
+            LOGGER.error(e)
