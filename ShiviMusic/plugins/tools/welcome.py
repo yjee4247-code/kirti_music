@@ -189,7 +189,7 @@ async def greet_new_member(_, member: ChatMemberUpdated):
 **☉ ɴᴀᴍᴇ ⧽** {user.mention}
 **☉ ɪᴅ ⧽** `{user.id}`
 **☉ ᴜ_ɴᴀᴍᴇ ⧽** @{user.username if user.username else 'None'}
-**☉ ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀs ⧽** {count}
+**☉ ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀs ⧽** count = await app.get_chat_members_count(chat_id)
 
 **▬▭▬▭▬▭▬▭▬▭▬▭▬▭▬**
 
